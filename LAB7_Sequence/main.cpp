@@ -24,7 +24,6 @@ void findLIS(int arr[], int n) {
         }
     }
     
-    // Находим максимальную длину и её позицию
     int maxLength = 0;
     int endIndex = 0;
     for (int i = 0; i < n; i++) {
@@ -34,11 +33,8 @@ void findLIS(int arr[], int n) {
         }
     }
     
-    // Выводим длину максимальной подпоследовательности
     std::cout << maxLength << "\n";
-    
     if (maxLength > 0) {
-        // Восстанавливаем подпоследовательность
         int* lis = new int[maxLength];
         int current = endIndex;
         
@@ -47,7 +43,6 @@ void findLIS(int arr[], int n) {
             current = prev[current];
         }
         
-        // Выводим подпоследовательность
         for (int i = 0; i < maxLength; i++) {
             std::cout << lis[i];
             if (i < maxLength - 1) {
