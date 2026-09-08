@@ -24,6 +24,8 @@ void hanoi(
     hanoi(n - 1, auxiliary, source, destination);
 }
 
+
+
 int main() {
     int N, k;
     
@@ -38,21 +40,24 @@ int main() {
     }
     
     // Запрашиваем номер целевого стержня
-    cout << "Введите номер целевого стержня k (2 или 3): ";
+    cout << "Введите номер целевого стержня k: ";
     cin >> k;
-    
-    // Проверяем корректность ввода k
-    if (k != 2 && k != 3) {
-        cout << "Ошибка: целевой стержень должен быть 2 или 3." << endl;
+
+    int source = 1;
+
+    if (k == source) {
+        cout << "WELL DONE" << endl;
         return 1;
     }
-    
-    // Исходный стержень всегда 1, вспомогательный — оставшийся (1+2+3=6, 6-k-1)
-    int source = 1;
-    int auxiliary = 6 - k - source; // Например, если k=2, то auxiliary=3; если k=3, то auxiliary=2
-    
-    // Вызываем рекурсивную функцию
-    hanoi(N, source, auxiliary, k);
+
+    else if (k <= 3) {
+        int auxiliary = 6 - k - source;
+        hanoi(N, source, auxiliary, k);
+    }
+
+    else {
+        hanoi(N, source, 2, k);
+    }
     
     return 0;
 }
