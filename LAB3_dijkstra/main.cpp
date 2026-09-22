@@ -53,7 +53,6 @@ int main() {
         if (u == -1) break; // Все достижимые обработаны
         visited[u] = true;
 
-        // Релаксация
         for (int v = 0; v < V; ++v) {
             if (!visited[v] && graph[u][v] != INF && dist[u] + graph[u][v] < dist[v]) {
                 dist[v] = dist[u] + graph[u][v];
