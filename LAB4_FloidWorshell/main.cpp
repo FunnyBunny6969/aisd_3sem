@@ -73,7 +73,7 @@ int main() {
     cout << "\nМатрица последовательности вершин (после алгоритма):\n";
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
-		cout << setw(4) << P[i][j];
+        cout << setw(4) << P[i][j];
         }
         cout << endl;
     }
