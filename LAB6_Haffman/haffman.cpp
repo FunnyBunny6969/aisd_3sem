@@ -62,7 +62,6 @@ vector<string> splitUTF8(const string& str) {
 }
 
 int main() {
-    // Настройка локали для поддержки русского языка
     setlocale(LC_ALL, "ru_RU.UTF-8");
     
     string text;
@@ -70,18 +69,17 @@ int main() {
     getline(cin, text);
     
     if (text.empty()) {
-        text = "иванов иван иванович";
+        text = "Бурский Алексей Сергеевич";
         cout << "Используется тестовый текст: " << text << endl;
     }
     
-    // 1. Разбиваем текст на UTF-8 символы и подсчитываем частоты
     vector<string> symbols = splitUTF8(text);
     map<string, int> freq;
     for (const string& symbol : symbols) {
         freq[symbol]++;
     }
     
-    // 2. Вывод таблицы встречаемости
+    // Вывод таблицы встречаемости
     cout << "\nА) ТАБЛИЦА ВСТРЕЧАЕМОСТИ СИМВОЛОВ:\n";
     int total = symbols.size();
     for (auto& p : freq) {
@@ -94,7 +92,7 @@ int main() {
              << (p.second * 100.0 / total) << "%)\n";
     }
     
-    // 3. Построение дерева Хаффмана
+    // Построение дерева Хаффмана
     priority_queue<Node*, vector<Node*>, Compare> pq;
     for (auto& p : freq) {
         pq.push(new Node(p.first, p.second));
@@ -112,11 +110,11 @@ int main() {
     
     Node* root = pq.top();
     
-    // 4. Генерация кодов
+    // Генерация кодов
     map<string, string> codes;
     generateCodes(root, "", codes);
     
-    // 5. Вывод таблицы кодов
+    // Вывод таблицы кодов
     cout << "\nБ) ТАБЛИЦА КОДОВ:\n";
     for (auto& p : codes) {
         string symbol = p.first;
@@ -127,7 +125,7 @@ int main() {
         cout << symbol << " -> " << p.second << "\n";
     }
     
-    // 6. Кодирование текста
+    // Кодирование текста
     cout << "\nВ) ЗАКОДИРОВАННАЯ ПОСЛЕДОВАТЕЛЬНОСТЬ:\n";
     string encoded = "";
     for (const string& symbol : symbols) {
@@ -135,7 +133,7 @@ int main() {
     }
     cout << encoded << "\n";
     
-    // 7. Статистика
+    // Статистика
     cout << "\nСТАТИСТИКА:\n";
     cout << "Исходный размер: " << text.length() << " байт (" << total * 8 << " бит)\n";
     cout << "Сжатый размер: " << encoded.length() << " бит\n";
