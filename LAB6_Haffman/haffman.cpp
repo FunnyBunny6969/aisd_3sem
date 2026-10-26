@@ -9,7 +9,7 @@ using namespace std;
 
 // Узел дерева Хаффмана
 struct Node {
-    string ch;  // храним символ как строку для UTF-8
+    string ch;
     int freq;
     Node *left, *right;
     Node(string c, int f) : ch(c), freq(f), left(nullptr), right(nullptr) {}
